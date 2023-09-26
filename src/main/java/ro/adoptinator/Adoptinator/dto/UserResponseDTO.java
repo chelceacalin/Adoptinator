@@ -1,17 +1,18 @@
 package ro.adoptinator.Adoptinator.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import lombok.Builder;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.validator.constraints.Length;
+import lombok.*;
 
-@RequiredArgsConstructor
+import java.util.UUID;
+
+@Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserResponseDTO {
-    @NotBlank
-    private String username;
 
-    @Length(min = 4)
-    private String password;
+    private UUID id;
+    private String username;
+    private String email;
     private String photoUrl;
+
 }

@@ -27,7 +27,7 @@ public class UserEntity {
     @NotBlank
     private String username;
 
-    @Length(min = 4)
-    private String password;
+    private String email;
+
     private String photoUrl;
 }
