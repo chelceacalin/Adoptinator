@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/calin
+    username: calin
+    password: calin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
