@@ -3,8 +3,12 @@ import axios from "axios";
 import backgroundImage from "../../images/backgroundPetAdoption.jpg"; // Update the path to your image
 import GoogleLogin from "../Buttons/GoogleLogin";
 import "./css/Login.css";
+import { useNavigate } from "react-router-dom";
+
 
 function Login() {
+  const navigate=useNavigate();
+
   const login = useGoogleLogin({
     onSuccess: async (response) => {
       try {
@@ -30,6 +34,8 @@ function Login() {
           .catch((err) => {
             console.log(err);
           });
+          
+          navigate('/home')
       } catch (err) {
         console.log(err);
       }
