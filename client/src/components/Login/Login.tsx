@@ -1,14 +1,18 @@
+import React,{useContext,useState} from 'react';
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import backgroundImage from "../../images/backgroundPetAdoption.jpg"; // Update the path to your image
 import GoogleLogin from "../Buttons/GoogleLogin";
 import "./css/Login.css";
-import { useNavigate } from "react-router-dom";
-
+import {userData} from '../../context/UserContext';
 
 function Login() {
   const navigate=useNavigate();
 
+  const {id,setId,isLoggedIn, setIsLoggedIn,setUsername,username}=useContext(userData);
+
+  
   const login = useGoogleLogin({
     onSuccess: async (response) => {
       try {
@@ -29,13 +33,16 @@ function Login() {
         axios
           .post("http://localhost:8080/users/add", body)
           .then((res) => {
-            console.log(res);
+            console.log(res.data);
+            setId(res.data.id);
+            setUsername(res.data.username);
           })
           .catch((err) => {
             console.log(err);
           });
           
-          navigate('/home')
+        
+        navigate('/home')
       } catch (err) {
         console.log(err);
       }
